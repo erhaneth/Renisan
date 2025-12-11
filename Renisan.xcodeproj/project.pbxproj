@@ -6,11 +6,66 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D5C54C242ECD2FF900E22868 /* RenisanBoard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D5C54C1D2ECD2FF900E22868 /* RenisanBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5C54C222ECD2FF900E22868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5E6F4602ECD29500032B1B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5C54C1C2ECD2FF900E22868;
+			remoteInfo = RenisanBoard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D5C54C252ECD2FF900E22868 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D5C54C242ECD2FF900E22868 /* RenisanBoard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D5C54C1D2ECD2FF900E22868 /* RenisanBoard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RenisanBoard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E6F4682ECD29500032B1B5 /* Renisan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renisan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D5C54C282ECD2FF900E22868 /* Exceptions for "RenisanBoard" folder in "RenisanBoard" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D5C54C1C2ECD2FF900E22868 /* RenisanBoard */;
+		};
+		D5C54C2A2ECD306D00E22868 /* Exceptions for "RenisanBoard" folder in "Renisan" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PredictionEngine.swift,
+			);
+			target = D5E6F4672ECD29500032B1B5 /* Renisan */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D5C54C1E2ECD2FF900E22868 /* RenisanBoard */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D5C54C2A2ECD306D00E22868 /* Exceptions for "RenisanBoard" folder in "Renisan" target */,
+				D5C54C282ECD2FF900E22868 /* Exceptions for "RenisanBoard" folder in "RenisanBoard" target */,
+			);
+			path = RenisanBoard;
+			sourceTree = "<group>";
+		};
 		D5E6F46A2ECD29500032B1B5 /* Renisan */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Renisan;
@@ -19,6 +74,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D5C54C1A2ECD2FF900E22868 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E6F4652ECD29500032B1B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				D5E6F46A2ECD29500032B1B5 /* Renisan */,
+				D5C54C1E2ECD2FF900E22868 /* RenisanBoard */,
 				D5E6F4692ECD29500032B1B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				D5E6F4682ECD29500032B1B5 /* Renisan.app */,
+				D5C54C1D2ECD2FF900E22868 /* RenisanBoard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +112,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D5C54C1C2ECD2FF900E22868 /* RenisanBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5C54C292ECD2FF900E22868 /* Build configuration list for PBXNativeTarget "RenisanBoard" */;
+			buildPhases = (
+				D5C54C192ECD2FF900E22868 /* Sources */,
+				D5C54C1A2ECD2FF900E22868 /* Frameworks */,
+				D5C54C1B2ECD2FF900E22868 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D5C54C1E2ECD2FF900E22868 /* RenisanBoard */,
+			);
+			name = RenisanBoard;
+			packageProductDependencies = (
+			);
+			productName = RenisanBoard;
+			productReference = D5C54C1D2ECD2FF900E22868 /* RenisanBoard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D5E6F4672ECD29500032B1B5 /* Renisan */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5E6F4732ECD29540032B1B5 /* Build configuration list for PBXNativeTarget "Renisan" */;
@@ -55,10 +141,12 @@
 				D5E6F4642ECD29500032B1B5 /* Sources */,
 				D5E6F4652ECD29500032B1B5 /* Frameworks */,
 				D5E6F4662ECD29500032B1B5 /* Resources */,
+				D5C54C252ECD2FF900E22868 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D5C54C232ECD2FF900E22868 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D5E6F46A2ECD29500032B1B5 /* Renisan */,
@@ -80,6 +168,9 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					D5C54C1C2ECD2FF900E22868 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					D5E6F4672ECD29500032B1B5 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -100,11 +191,19 @@
 			projectRoot = "";
 			targets = (
 				D5E6F4672ECD29500032B1B5 /* Renisan */,
+				D5C54C1C2ECD2FF900E22868 /* RenisanBoard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D5C54C1B2ECD2FF900E22868 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E6F4662ECD29500032B1B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +214,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D5C54C192ECD2FF900E22868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E6F4642ECD29500032B1B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +230,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D5C54C232ECD2FF900E22868 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5C54C1C2ECD2FF900E22868 /* RenisanBoard */;
+			targetProxy = D5C54C222ECD2FF900E22868 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D5C54C262ECD2FF900E22868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RenisanBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rênîşan";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gumusdev.Renisan.RenisanBoard;
+				PRODUCT_NAME = RenisanBoard;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5C54C272ECD2FF900E22868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RenisanBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rênîşan";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gumusdev.Renisan.RenisanBoard;
+				PRODUCT_NAME = RenisanBoard;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D5E6F4712ECD29540032B1B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -262,6 +430,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				INFOPLIST_KEY_CFBundleDisplayName = "Rênîşan";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gumusdev.Renisan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -284,6 +453,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rênîşan";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,6 +479,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D5C54C292ECD2FF900E22868 /* Build configuration list for PBXNativeTarget "RenisanBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5C54C262ECD2FF900E22868 /* Debug */,
+				D5C54C272ECD2FF900E22868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D5E6F4632ECD29500032B1B5 /* Build configuration list for PBXProject "Renisan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
