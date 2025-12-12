@@ -27,15 +27,13 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 // Header
                 VStack(spacing: 12) {
-                    ZStack {
-                        Circle()
-                            .fill(.white.opacity(0.15))
-                            .frame(width: 80, height: 80)
-                        
-                        Text("ڕ")
-                            .font(.system(size: 44, weight: .bold))
-                            .foregroundColor(.white)
-                    }
+                    // App Icon
+                    Image("AppLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 22))
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                     
                     Text("Rênîşan")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
