@@ -45,6 +45,10 @@ class KeyboardViewController: UIInputViewController {
         // Load Brain
         DispatchQueue.global(qos: .userInitiated).async {
             self.predictionEngine = PredictionEngine()
+            // Update predictions as soon as engine is ready
+            DispatchQueue.main.async {
+                self.updatePredictions()
+            }
         }
         
         view.backgroundColor = colorBackground
@@ -52,6 +56,12 @@ class KeyboardViewController: UIInputViewController {
         setupSuggestionBar()
         // Initial Layout
         updateKeyboardLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Refresh predictions when keyboard appears
+        updatePredictions()
     }
     
     // MARK: - 1. Suggestion Bar
@@ -253,6 +263,9 @@ class KeyboardViewController: UIInputViewController {
         textDocumentProxy.insertText(letter)
         UIDevice.current.playInputClick()
         
+        // Update predictions immediately after typing
+        updatePredictions()
+        
         // Auto-lowercase after typing a letter (standard behavior)
         if isUppercase {
             isUppercase = false
@@ -263,13 +276,18 @@ class KeyboardViewController: UIInputViewController {
     @objc func spaceTapped() {
         performAutocorrect()
         textDocumentProxy.insertText(" ")
+        updatePredictions()
     }
     
-    @objc func backspaceTapped() { textDocumentProxy.deleteBackward() }
+    @objc func backspaceTapped() {
+        textDocumentProxy.deleteBackward()
+        updatePredictions()
+    }
     
     @objc func returnTapped() {
         performAutocorrect()
         textDocumentProxy.insertText("\n")
+        updatePredictions()
     }
     
     // MARK: - Autocorrect Logic
@@ -313,12 +331,26 @@ class KeyboardViewController: UIInputViewController {
         performAutocorrect()
         textDocumentProxy.insertText(punctuation)
         UIDevice.current.playInputClick()
+        updatePredictions()
     }
 
     @objc func suggestionTapped(_ sender: UIButton) {
         guard let word = sender.title(for: .normal) else { return }
         let proxy = self.textDocumentProxy
+        
+        // Check if user is typing a partial word (no trailing space)
+        if let context = proxy.documentContextBeforeInput, !context.hasSuffix(" ") {
+            // Delete the partial word first
+            if let partialWord = getCurrentWord() {
+                for _ in 0..<partialWord.count {
+                    proxy.deleteBackward()
+                }
+            }
+        }
+        
+        // Insert the complete suggestion with a space
         proxy.insertText(word + " ")
+        updatePredictions()
     }
     
     // MARK: - Prediction Logic

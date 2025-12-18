@@ -8,6 +8,9 @@ class PredictionEngine {
     var validWords: Set<String> = []  // Fast O(1) lookup for valid words
     var wordFrequencies: [String: Double] = [:]  // Word frequencies for ranking corrections
     
+    // Valid Kurdish letters (including special characters)
+    let validLetters = CharacterSet(charactersIn: "abcçdefghijklmnopqrstuvwxyzêîşûABCÇDEFGHIJKLMNOPQRSTUVWXYZÊÎŞÛ")
+    
     // Keyboard adjacency map for Kurdish keyboard (keys that are physically close)
     let keyboardAdjacency: [Character: Set<Character>] = [
         "q": ["w", "a"],
@@ -47,6 +50,19 @@ class PredictionEngine {
         loadModel()
     }
     
+    // MARK: - Data Validation
+    /// Check if a string is a clean word (only Kurdish letters, no garbage)
+    func isCleanWord(_ word: String) -> Bool {
+        // Must have at least 1 character
+        guard word.count >= 1 else { return false }
+        
+        // Must only contain valid Kurdish letters
+        let wordChars = CharacterSet(charactersIn: word)
+        guard validLetters.isSuperset(of: wordChars) else { return false }
+        
+        return true
+    }
+    
     func loadModel() {
         guard let path = Bundle.main.path(forResource: "kurmanji_model_optimized", ofType: "json") else { return }
         
@@ -73,6 +89,8 @@ class PredictionEngine {
         if let unigrams = model["1"] as? [String: [String: Double]] {
             for (_, nextWords) in unigrams {
                 for (word, frequency) in nextWords {
+                    // Only add clean words (no garbage data)
+                    guard isCleanWord(word) else { continue }
                     validWords.insert(word)
                     // Keep the highest frequency if word appears multiple times
                     if let existing = wordFrequencies[word] {
@@ -87,8 +105,12 @@ class PredictionEngine {
         // Also extract from 2-grams for more coverage
         if let bigrams = model["2"] as? [String: [String: Double]] {
             for (contextWord, nextWords) in bigrams {
-                validWords.insert(contextWord)
+                // Only add clean words
+                if isCleanWord(contextWord) {
+                    validWords.insert(contextWord)
+                }
                 for (word, frequency) in nextWords {
+                    guard isCleanWord(word) else { continue }
                     validWords.insert(word)
                     if let existing = wordFrequencies[word] {
                         wordFrequencies[word] = max(existing, frequency)
@@ -99,7 +121,7 @@ class PredictionEngine {
             }
         }
         
-        print("📚 Vocabulary loaded: \(validWords.count) words")
+        print("📚 Vocabulary loaded: \(validWords.count) clean words")
     }
     
     // MARK: - Autocorrect Methods
@@ -302,7 +324,11 @@ class PredictionEngine {
                 if let nGramLevel = model[String(n)] as? [String: [String: Double]],
                    let matches = nGramLevel[historyKey] {
                     
-                    let sortedMatches = matches.sorted { $0.value > $1.value }.map { $0.key }
+                    // Filter out garbage data - only keep clean words
+                    let sortedMatches = matches
+                        .filter { isCleanWord($0.key) }
+                        .sorted { $0.value > $1.value }
+                        .map { $0.key }
                     candidates.append(contentsOf: sortedMatches)
                     if candidates.count > 5 { break }
                 }
@@ -311,11 +337,14 @@ class PredictionEngine {
         
         // 4. Filter Logic
         if isTypingNewWord {
-            return Array(candidates.prefix(3))
+            // Remove duplicates and return top 3
+            let unique = Array(NSOrderedSet(array: candidates)) as! [String]
+            return Array(unique.prefix(3))
         } else {
-            // Filter candidates to only show ones starting with "xwe"
+            // Filter candidates to only show ones starting with the partial word
             let filtered = candidates.filter { $0.hasPrefix(partialWord) }
-            return Array(filtered.prefix(3))
+            let unique = Array(NSOrderedSet(array: filtered)) as! [String]
+            return Array(unique.prefix(3))
         }
     }
 }
